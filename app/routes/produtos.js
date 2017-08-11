@@ -7,4 +7,8 @@ module.exports = function (app) {
         });
         connection.end();
     });
+
+    app.get('/produtos/novo', function (req, res) {
+        res.render('produtos/form');
+    });
 };
