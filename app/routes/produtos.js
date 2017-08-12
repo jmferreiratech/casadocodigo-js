@@ -3,7 +3,10 @@ module.exports = function (app) {
         var connection = app.infra.connectionFactory();
         var produtosDAO = new app.infra.ProdutosDAO(connection);
         produtosDAO.lista(function (err, results) {
-            res.render('produtos/lista', {lista: results});
+            res.format({
+                html: function() {res.render('produtos/lista', {lista: results});},
+                json: function() {res.json(results);},
+            });
         });
         connection.end();
     });
